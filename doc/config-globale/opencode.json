@@ -1,0 +1,109 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+
+  "model": "litellm/GLM-5.3-Flash",
+  "small_model": "litellm/dev-model",
+  "share": "disabled",
+
+  "agent": {
+    "build": {
+      "model": "litellm/GLM-5.3-Flash"
+    },
+    "plan": {
+      "model": "litellm/GLM-5.3-Flash"
+    },
+    "general": {
+      "model": "litellm/GLM-5.3-Flash"
+    }
+  },
+
+  "provider": {
+    "litellm": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Litellm",
+      "options": {
+        "baseURL": "https://api.ia.limos.fr/v1",
+        "apiKey": "{env:LITELLM_API_KEY}",
+        "timeout": 600000,
+        "chunkTimeout": 60000
+      },
+      "models": {
+        "general": {
+          "name": "general"
+        },
+        "general_nothink": {
+          "name": "general_nothink"
+        },
+        "dev-model": {
+          "name": "dev-model",
+          "limit": {
+            "context": 196608,
+            "input": 155000,
+            "output": 8192
+          },
+          "options": {
+            "temperature": 0,
+            "max_tokens": 8192
+          }
+        },
+        "GLM-5.3-Flash": {
+          "name": "GLM-5.3-Flash",
+          "limit": {
+            "context": 196608,
+            "input": 155000,
+            "output": 8192
+          }
+        }
+      }
+    }
+  },
+
+  "compaction": {
+    "auto": true,
+    "prune": true,
+    "tail_turns": 5,
+    "preserve_recent_tokens": 16000,
+    "reserved": 32768
+  },
+
+  "tool_output": {
+    "max_lines": 300,
+    "max_bytes": 32768
+  },
+
+  "watcher": {
+    "ignore": [
+      ".git/**",
+      "node_modules/**",
+      "dist/**",
+      "build/**",
+      ".venv/**",
+      "venv/**",
+      "__pycache__/**",
+      ".pytest_cache/**",
+      ".mypy_cache/**",
+      ".ruff_cache/**",
+      "coverage/**",
+      ".turbo/**",
+      "out/**",
+      "target/**",
+      ".DS_Store",
+      "Thumbs.db",
+      ".env",
+      ".env.local",
+      ".idea/**",
+      ".vscode/**",
+      "*.swp",
+      "*.swo",
+      "*.tmp",
+      "*.bak",
+      "*.pyc",
+      "*.pyo",
+      "*.log",
+      "*.sqlite",
+      "*.db",
+      "*.parquet",
+      "*.csv"
+    ]
+  }
+}
